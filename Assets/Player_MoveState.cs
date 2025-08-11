@@ -10,9 +10,9 @@ public class Player_MoveState : EntityState
     {
         base.Update();
 
-        if (Input.GetKeyDown(KeyCode.I))
+        if (player.MoveInput.x == 0)
         {
-            stateMachine.ChangeState(player.idleState);
+            stateMachine.ChangeState(player.IdleState);
         }
     }
 }
