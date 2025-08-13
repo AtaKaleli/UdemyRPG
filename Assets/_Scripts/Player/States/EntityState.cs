@@ -27,7 +27,7 @@ public abstract class EntityState
 
     public virtual void Update()
     {
-        //Debug.Log("Updated state: " + animBoolName);
+        player.PlayerAnimation.SetFloat("yVelocity", playerRb.linearVelocity.y);
     }
 
     public virtual void Exit()

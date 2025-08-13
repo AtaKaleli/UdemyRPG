@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private PlayerInputSet input;
+    public PlayerInputSet Input { get; private set; }
     private StateMachine stateMachine;
     private FlipController flipController;
 
@@ -11,13 +11,23 @@ public class Player : MonoBehaviour
 
     public Player_IdleState IdleState { get; private set; }
     public Player_MoveState MoveState { get; private set; }
+    public Player_JumpState JumpState { get; private set; }
+    public Player_FallState FallState { get; private set; }
 
     public Vector2 MoveInput { get; private set; }
 
 
     [Header("Movement Data")]
     public float moveSpeed = 5f;
-    
+    public float jumpForce = 5f;
+
+    [Range(0, 1)]
+    public float onAirMultiplier = 0.75f;
+
+    [Header("Collision Check - Ground")]
+    [SerializeField] private float groundDistance;
+    [SerializeField] private LayerMask groundLayer;
+    public bool IsGroundDetected { get; private set; }
 
 
     private void Awake()
@@ -25,27 +35,29 @@ public class Player : MonoBehaviour
         PlayerAnimation = GetComponentInChildren<Animator>();
         PlayerRigidBody = GetComponent<Rigidbody2D>();
 
-        input = new PlayerInputSet();
+        Input = new PlayerInputSet();
         stateMachine = new StateMachine();
         flipController = GetComponentInChildren<FlipController>();
 
         IdleState = new Player_IdleState(this, stateMachine, "idleState");
         MoveState = new Player_MoveState(this, stateMachine, "moveState");
+        JumpState = new Player_JumpState(this, stateMachine, "jumpFallState");
+        FallState = new Player_FallState(this, stateMachine, "jumpFallState");
     }
 
     private void OnEnable()
     {
-        input.Enable();
+        Input.Enable();
 
-        input.Player.Movement.performed += ctx => MoveInput = ctx.ReadValue<Vector2>();
-        input.Player.Movement.canceled += ctx => MoveInput = Vector2.zero;
+        Input.Player.Movement.performed += ctx => MoveInput = ctx.ReadValue<Vector2>();
+        Input.Player.Movement.canceled += ctx => MoveInput = Vector2.zero;
     }
 
     
 
     private void OnDisable()
     {
-        input.Disable();
+        Input.Disable();
     }
 
     private void Start()
@@ -55,7 +67,9 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        stateMachine.UpdateCurrentState();
+        GroundCollisionCheck();
+
+        stateMachine.CurrentState.Update();
 
     }
 
@@ -66,10 +80,16 @@ public class Player : MonoBehaviour
         flipController.HandleFlip(xVelocity);
     }
 
-    
 
+    private void GroundCollisionCheck()
+    {
+        IsGroundDetected = Physics2D.Raycast(transform.position, Vector2.down, groundDistance, groundLayer);
+    }
 
-
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawLine(transform.position, new Vector3(transform.position.x, transform.position.y - groundDistance));
+    }
 
 
 

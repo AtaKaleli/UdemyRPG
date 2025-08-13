@@ -20,9 +20,5 @@ public class StateMachine
         CurrentState.Enter();
     }
 
-    public void UpdateCurrentState()
-    {
-        CurrentState.Update();
-    }
 
 }
