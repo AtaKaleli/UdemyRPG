@@ -13,6 +13,8 @@ public class Player_MoveState : Player_GroundedState
     {
         base.Update();
 
+        
+
         if (player.MoveInput.x == 0)
         {
             stateMachine.ChangeState(player.IdleState);
