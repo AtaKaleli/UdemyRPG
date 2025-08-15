@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     public Player_JumpState JumpState { get; private set; }
     public Player_FallState FallState { get; private set; }
     public Player_WallSlideState WallSlideState { get; private set; }
+    public Player_WallJumpState WallJumpState { get; private set; }
 
 
 
@@ -29,6 +30,9 @@ public class Player : MonoBehaviour
     public float onAirMultiplier = 0.75f;
     [Range(0, 1)]
     public float wallSlideMultiplier = 0.4f;
+
+    [Header("Wall Jump Data")]
+    public Vector2 wallJumpVector = new Vector2(5, 5);
 
     [Header("Collision Check - Ground")]
     [SerializeField] private Transform groundCheckTransform;
@@ -58,6 +62,7 @@ public class Player : MonoBehaviour
         JumpState = new Player_JumpState(this, stateMachine, "jumpFallState");
         FallState = new Player_FallState(this, stateMachine, "jumpFallState");
         WallSlideState = new Player_WallSlideState(this, stateMachine, "wallSlideState");
+        WallJumpState = new Player_WallJumpState(this, stateMachine, "jumpFallState");
     }
 
     private void OnEnable()

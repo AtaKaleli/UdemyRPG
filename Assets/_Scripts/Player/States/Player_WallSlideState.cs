@@ -13,6 +13,10 @@ public class Player_WallSlideState : EntityState
     public override void Update()
     {
         base.Update();
+        HandleWallSlide();
+        
+        if (player.Input.Player.Jump.WasPressedThisFrame())
+            stateMachine.ChangeState(player.WallJumpState);
 
         if (player.IsGroundDetected)
         {
@@ -23,7 +27,7 @@ public class Player_WallSlideState : EntityState
         if (!player.IsWallDetected)
             stateMachine.ChangeState(player.FallState);
 
-        HandleWallSlide();
+
     }
 
     private void HandleWallSlide()

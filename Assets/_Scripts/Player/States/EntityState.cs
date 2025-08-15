@@ -27,6 +27,7 @@ public abstract class EntityState
 
     public virtual void Update()
     {
+        Debug.Log(animBoolName);
         player.PlayerAnimation.SetFloat("yVelocity", playerRb.linearVelocity.y);
     }
 
