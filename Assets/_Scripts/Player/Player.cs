@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     public Player_FallState FallState { get; private set; }
     public Player_WallSlideState WallSlideState { get; private set; }
     public Player_WallJumpState WallJumpState { get; private set; }
+    public Player_DashState DashState { get; private set; }
 
 
 
@@ -33,6 +34,10 @@ public class Player : MonoBehaviour
 
     [Header("Wall Jump Data")]
     public Vector2 wallJumpVector = new Vector2(5, 5);
+
+    [Header("Dash Data")]
+    public float dashMultiplier;
+    public float dashTimer;
 
     [Header("Collision Check - Ground")]
     [SerializeField] private Transform groundCheckTransform;
@@ -63,6 +68,7 @@ public class Player : MonoBehaviour
         FallState = new Player_FallState(this, stateMachine, "jumpFallState");
         WallSlideState = new Player_WallSlideState(this, stateMachine, "wallSlideState");
         WallJumpState = new Player_WallJumpState(this, stateMachine, "jumpFallState");
+        DashState = new Player_DashState(this, stateMachine, "dashState");
     }
 
     private void OnEnable()
@@ -131,8 +137,16 @@ public class Player : MonoBehaviour
         transform.Rotate(0f, 180f, 0f);
     }
 
-    
-    
+    public bool CanDash()
+    {
+        if (IsWallDetected)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
 
     private void OnDrawGizmos()
     {

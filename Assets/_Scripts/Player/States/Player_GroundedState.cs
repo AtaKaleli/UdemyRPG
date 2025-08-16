@@ -15,7 +15,12 @@ public class Player_GroundedState : EntityState
             stateMachine.ChangeState(player.JumpState);
         }
 
+        
+
+
         if (player.PlayerRigidBody.linearVelocity.y < 0 && !player.IsGroundDetected)
+        {
             stateMachine.ChangeState(player.FallState);
+        }
     }
 }
