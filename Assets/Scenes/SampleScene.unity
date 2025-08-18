@@ -708,6 +708,12 @@ MonoBehaviour:
   wallJumpVector: {x: 10, y: 15}
   dashMultiplier: 6
   dashTimer: 0.1
+  attackVelocity:
+  - {x: 3, y: 1.5}
+  - {x: 1, y: 1}
+  - {x: 4, y: 5}
+  attackVelocityTimer: 0.1
+  comboResetTime: 2
   groundCheckTransform: {fileID: 612940149}
   groundDistance: 1.4
   groundLayer:
@@ -811,6 +817,7 @@ GameObject:
   - component: {fileID: 1836935695}
   - component: {fileID: 1836935696}
   - component: {fileID: 1836935697}
+  - component: {fileID: 1836935698}
   m_Layer: 0
   m_Name: Animator
   m_TagString: Untagged
@@ -910,6 +917,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1836935698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1836935694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfda4f9d864083741b2bf3b1094e942a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

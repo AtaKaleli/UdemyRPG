@@ -9,6 +9,8 @@ public abstract class EntityState
     protected Rigidbody2D playerRb;
 
     protected float stateTimer;
+    protected bool animTrigger;
+
 
     public EntityState(Player player, StateMachine stateMachine, string animBoolName)
     {
@@ -24,7 +26,7 @@ public abstract class EntityState
     public virtual void Enter()
     {
         player.PlayerAnimation.SetBool(animBoolName, true);
-        
+        animTrigger = false;
     }
 
     public virtual void Update()
@@ -35,7 +37,7 @@ public abstract class EntityState
         
         player.PlayerAnimation.SetFloat("yVelocity", playerRb.linearVelocity.y);
 
-        if (player.Input.Player.Dash.WasPressedThisFrame() && player.CanDash())
+        if (player.Input.Player.Dash.WasPressedThisFrame())
         {
             stateMachine.ChangeState(player.DashState);
         }
@@ -44,10 +46,12 @@ public abstract class EntityState
     public virtual void Exit()
     {
         player.PlayerAnimation.SetBool(animBoolName, false);
-  
-        
     }
 
+    public void SetAnimTrigger()
+    {
+        animTrigger = true;
+    }
     
 
 

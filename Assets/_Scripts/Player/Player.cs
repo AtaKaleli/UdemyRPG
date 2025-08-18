@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     public Player_WallSlideState WallSlideState { get; private set; }
     public Player_WallJumpState WallJumpState { get; private set; }
     public Player_DashState DashState { get; private set; }
+    public Player_BasicAttackState BasicAttackState { get; private set; }
 
 
 
@@ -38,6 +39,11 @@ public class Player : MonoBehaviour
     [Header("Dash Data")]
     public float dashMultiplier;
     public float dashTimer;
+
+    [Header("Basic Attack Data")]
+    public Vector2[] attackVelocity;
+    public float attackVelocityTimer = 0.1f;
+    public float comboResetTime = 2f;
 
     [Header("Collision Check - Ground")]
     [SerializeField] private Transform groundCheckTransform;
@@ -69,6 +75,7 @@ public class Player : MonoBehaviour
         WallSlideState = new Player_WallSlideState(this, stateMachine, "wallSlideState");
         WallJumpState = new Player_WallJumpState(this, stateMachine, "jumpFallState");
         DashState = new Player_DashState(this, stateMachine, "dashState");
+        BasicAttackState = new Player_BasicAttackState(this, stateMachine, "basicAttackState");
     }
 
     private void OnEnable()
@@ -112,6 +119,7 @@ public class Player : MonoBehaviour
     {
         IsGroundDetected = Physics2D.Raycast(groundCheckTransform.position, Vector2.down, groundDistance, groundLayer);
         IsWallDetected = Physics2D.Raycast(transform.position, Vector2.right * FacingDirection, wallDistance, wallLayer);
+
     }
 
     
@@ -136,15 +144,10 @@ public class Player : MonoBehaviour
         FacingDirection = FacingDirection * -1;
         transform.Rotate(0f, 180f, 0f);
     }
-
-    public bool CanDash()
+    
+    public void SetAnimTriggerCalled()
     {
-        if (IsWallDetected)
-        {
-            return false;
-        }
-
-        return true;
+        stateMachine.CurrentState.SetAnimTrigger();
     }
 
 

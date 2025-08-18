@@ -15,7 +15,10 @@ public class Player_GroundedState : EntityState
             stateMachine.ChangeState(player.JumpState);
         }
 
-        
+        if (player.Input.Player.Attack.WasPressedThisFrame())
+        {
+            stateMachine.ChangeState(player.BasicAttackState);
+        }
 
 
         if (player.PlayerRigidBody.linearVelocity.y < 0 && !player.IsGroundDetected)

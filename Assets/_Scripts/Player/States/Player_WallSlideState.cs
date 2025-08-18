@@ -10,6 +10,8 @@ public class Player_WallSlideState : EntityState
     {
     }
 
+
+
     public override void Update()
     {
         base.Update();
