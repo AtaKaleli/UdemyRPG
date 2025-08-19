@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
 
 
 
+
     [Header("Movement Data")]
     public float moveSpeed = 5f;
     public float jumpForce = 5f;
@@ -34,16 +35,18 @@ public class Player : MonoBehaviour
     public float wallSlideMultiplier = 0.4f;
 
     [Header("Wall Jump Data")]
-    public Vector2 wallJumpVector = new Vector2(5, 5);
+    public Vector2 wallJumpVector = new Vector2(5f, 5f);
 
     [Header("Dash Data")]
     public float dashMultiplier;
     public float dashTimer;
 
+
     [Header("Basic Attack Data")]
-    public Vector2[] attackVelocity;
+    public Vector2 attackVelocity = new Vector2(3f, 1.5f);
     public float attackVelocityTimer = 0.1f;
     public float comboResetTime = 2f;
+    
 
     [Header("Collision Check - Ground")]
     [SerializeField] private Transform groundCheckTransform;
@@ -145,11 +148,11 @@ public class Player : MonoBehaviour
         transform.Rotate(0f, 180f, 0f);
     }
     
-    public void SetAnimTriggerCalled()
-    {
-        stateMachine.CurrentState.SetAnimTrigger();
-    }
 
+    public void CallAnimationTrigger()
+    {
+        stateMachine.CurrentState.CallAnimationTrigger();
+    }
 
     private void OnDrawGizmos()
     {

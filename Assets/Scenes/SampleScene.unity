@@ -144,7 +144,7 @@ Transform:
   m_GameObject: {fileID: 412383741}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.33, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -553,7 +553,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &1368907409
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -664,8 +664,8 @@ Transform:
   m_GameObject: {fileID: 1368907408}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.75, y: 0.0786, z: 0}
-  m_LocalScale: {x: 9.216917, y: 4.9806843, z: 1}
+  m_LocalPosition: {x: -1, y: 1.8008, z: 0}
+  m_LocalScale: {x: 9.216917, y: 1.6022862, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -708,12 +708,6 @@ MonoBehaviour:
   wallJumpVector: {x: 10, y: 15}
   dashMultiplier: 6
   dashTimer: 0.1
-  attackVelocity:
-  - {x: 3, y: 1.5}
-  - {x: 1, y: 1}
-  - {x: 4, y: 5}
-  attackVelocityTimer: 0.1
-  comboResetTime: 2
   groundCheckTransform: {fileID: 612940149}
   groundDistance: 1.4
   groundLayer:
@@ -733,7 +727,7 @@ Transform:
   m_GameObject: {fileID: 1532871504}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.15, y: 4.04, z: 0}
+  m_LocalPosition: {x: -8.15, y: -0.97, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -926,7 +920,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1836935694}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfda4f9d864083741b2bf3b1094e942a, type: 3}
+  m_Script: {fileID: 11500000, guid: 8014ae958865970458e495247fea363f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807

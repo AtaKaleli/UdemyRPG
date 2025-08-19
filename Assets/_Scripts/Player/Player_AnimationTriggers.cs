@@ -6,14 +6,18 @@ public class Player_AnimationTriggers : MonoBehaviour
 
 
 
+
     private void Awake()
     {
-        player = GetComponentInParent<Player>(); 
+        player = GetComponentInParent<Player>();
     }
 
 
-    private void CurrentStateTrigger()
+
+
+
+    private void CallAnimationTrigger()
     {
-        player.SetAnimTriggerCalled();
+        player.CallAnimationTrigger();
     }
 }

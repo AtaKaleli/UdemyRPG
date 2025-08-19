@@ -9,7 +9,7 @@ public abstract class EntityState
     protected Rigidbody2D playerRb;
 
     protected float stateTimer;
-    protected bool animTrigger;
+    protected bool animationTrigger;
 
 
     public EntityState(Player player, StateMachine stateMachine, string animBoolName)
@@ -25,8 +25,9 @@ public abstract class EntityState
 
     public virtual void Enter()
     {
+        animationTrigger = false;
         player.PlayerAnimation.SetBool(animBoolName, true);
-        animTrigger = false;
+
     }
 
     public virtual void Update()
@@ -48,10 +49,11 @@ public abstract class EntityState
         player.PlayerAnimation.SetBool(animBoolName, false);
     }
 
-    public void SetAnimTrigger()
+    public void CallAnimationTrigger()
     {
-        animTrigger = true;
+        animationTrigger = true;
     }
+
     
 
 
