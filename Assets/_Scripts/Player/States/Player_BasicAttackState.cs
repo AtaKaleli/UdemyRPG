@@ -31,7 +31,7 @@ public class Player_BasicAttackState : EntityState
 
         HandleAttackVelocity();
 
-        if (animationTrigger)
+        if (animationTriggerCalled)
         {
             stateMachine.ChangeState(player.IdleState);
         }

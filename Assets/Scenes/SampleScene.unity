@@ -553,7 +553,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!61 &1368907409
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -664,8 +664,8 @@ Transform:
   m_GameObject: {fileID: 1368907408}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: 1.8008, z: 0}
-  m_LocalScale: {x: 9.216917, y: 1.6022862, z: 1}
+  m_LocalPosition: {x: 2.14, y: 0.0721, z: 0}
+  m_LocalScale: {x: 9.216917, y: 5.277686, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -708,6 +708,9 @@ MonoBehaviour:
   wallJumpVector: {x: 10, y: 15}
   dashMultiplier: 6
   dashTimer: 0.1
+  attackVelocity: {x: 3, y: 1.5}
+  attackVelocityTimer: 0.1
+  comboResetTime: 1
   groundCheckTransform: {fileID: 612940149}
   groundDistance: 1.4
   groundLayer:

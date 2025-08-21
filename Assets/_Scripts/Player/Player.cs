@@ -18,6 +18,8 @@ public class Player : MonoBehaviour
     public Player_WallJumpState WallJumpState { get; private set; }
     public Player_DashState DashState { get; private set; }
     public Player_BasicAttackState BasicAttackState { get; private set; }
+    public Player_JumpAttackState JumpAttackState { get; private set; }
+
 
 
 
@@ -79,7 +81,10 @@ public class Player : MonoBehaviour
         WallJumpState = new Player_WallJumpState(this, stateMachine, "jumpFallState");
         DashState = new Player_DashState(this, stateMachine, "dashState");
         BasicAttackState = new Player_BasicAttackState(this, stateMachine, "basicAttackState");
+        JumpAttackState = new Player_JumpAttackState(this, stateMachine, "jumpAttackState");
     }
+
+    
 
     private void OnEnable()
     {
@@ -87,6 +92,8 @@ public class Player : MonoBehaviour
 
         Input.Player.Movement.performed += ctx => MoveInput = ctx.ReadValue<Vector2>();
         Input.Player.Movement.canceled += ctx => MoveInput = Vector2.zero;
+
+        
     }
 
     
