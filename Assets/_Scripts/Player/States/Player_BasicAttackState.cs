@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Player_BasicAttackState : EntityState
+public class Player_BasicAttackState : PlayerState
 {
     private float attackVelocityTimer;
     private int basicAttackIndex = 1;
@@ -21,7 +21,7 @@ public class Player_BasicAttackState : EntityState
         ResetComboIfNeeded();
         SetAttackPushFeedback();
 
-        player.PlayerAnimation.SetInteger("basicAttackIndex", basicAttackIndex);
+        Anim.SetInteger("basicAttackIndex", basicAttackIndex);
     }
 
 
@@ -51,7 +51,7 @@ public class Player_BasicAttackState : EntityState
 
         if(attackVelocityTimer < 0)
         {
-            player.SetVelocity(0, playerRb.linearVelocity.y);
+            player.SetVelocity(0, Rb.linearVelocity.y);
         }
     }
 

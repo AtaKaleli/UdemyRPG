@@ -3883,16 +3883,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cace671a9840e0745becdd4e1ff2a10b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 8
-  jumpForce: 15
-  onAirMultiplier: 0.75
-  wallSlideMultiplier: 0.4
-  wallJumpVector: {x: 10, y: 15}
-  dashMultiplier: 6
-  dashTimer: 0.1
-  attackVelocity: {x: 3, y: 1.5}
-  attackVelocityTimer: 0.1
-  comboResetTime: 1
   groundCheckTransform: {fileID: 612940149}
   groundDistance: 1.4
   groundLayer:
@@ -3903,6 +3893,16 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 64
+  moveSpeed: 8
+  jumpForce: 15
+  onAirMultiplier: 0.75
+  wallSlideMultiplier: 0.4
+  wallJumpVector: {x: 10, y: 15}
+  dashMultiplier: 6
+  dashTimer: 0.1
+  attackVelocity: {x: 3, y: 1.5}
+  attackVelocityTimer: 0.1
+  comboResetTime: 1
 --- !u!4 &1532871506
 Transform:
   m_ObjectHideFlags: 0

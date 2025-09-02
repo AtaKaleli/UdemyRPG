@@ -12,14 +12,14 @@ public class Player_JumpState : Player_AirState
     {
         base.Enter();
 
-        player.SetVelocity(playerRb.linearVelocity.x, player.jumpForce);
+        player.SetVelocity(Rb.linearVelocity.x, player.jumpForce);
     }
 
     public override void Update()
     {
         base.Update();
 
-        if (player.PlayerRigidBody.linearVelocity.y < 0)
+        if (player.Rb.linearVelocity.y < 0)
             stateMachine.ChangeState(player.FallState);
 
         

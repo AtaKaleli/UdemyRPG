@@ -1,4 +1,4 @@
-public class Player_AirState : EntityState
+public class Player_AirState : PlayerState
 {
     public Player_AirState(Player player, StateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
     {
@@ -17,6 +17,6 @@ public class Player_AirState : EntityState
 
     private void HandleOnAirVelocity()
     {
-        player.SetVelocity(player.MoveInput.x * (player.moveSpeed * player.onAirMultiplier), playerRb.linearVelocity.y);
+        player.SetVelocity(player.MoveInput.x * (player.moveSpeed * player.onAirMultiplier), Rb.linearVelocity.y);
     }
 }
