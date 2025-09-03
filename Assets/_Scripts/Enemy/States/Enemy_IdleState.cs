@@ -1,7 +1,9 @@
 using UnityEngine;
 
-public class Enemy_IdleState : EnemyState
+public class Enemy_IdleState : Enemy_GroundedState
 {
+    
+
     public Enemy_IdleState(Enemy enemy, StateMachine stateMachine, string animBoolName) : base(enemy, stateMachine, animBoolName)
     {
     }
@@ -9,7 +11,7 @@ public class Enemy_IdleState : EnemyState
     public override void Enter()
     {
         base.Enter();
-
+        stateTimer = enemy.idleTime;
         enemy.SetVelocity(0, Rb.linearVelocityY);
     }
 
@@ -17,7 +19,10 @@ public class Enemy_IdleState : EnemyState
     {
         base.Update();
 
-        if (Input.GetKeyDown(KeyCode.M))
+        if(stateTimer < 0f)
+        {
             stateMachine.ChangeState(enemy.MoveState);
+        }
+        
     }
 }

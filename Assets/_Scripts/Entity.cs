@@ -20,7 +20,7 @@ public class Entity : MonoBehaviour
     [Header("Collision Check - Ground")]
     [SerializeField] private Transform groundCheckTransform;
     [SerializeField] private float groundDistance;
-    [SerializeField] private LayerMask groundLayer;
+    public LayerMask groundLayer;
     public bool IsGroundDetected { get; private set; }
 
     [Header("Collision Check - Wall")]
@@ -49,7 +49,7 @@ public class Entity : MonoBehaviour
 
 
 
-    private void Update()
+    protected virtual void Update()
     {
         CollisionChecks();
 
@@ -69,7 +69,7 @@ public class Entity : MonoBehaviour
     private void CollisionChecks()
     {
         IsGroundDetected = Physics2D.Raycast(groundCheckTransform.position, Vector2.down, groundDistance, groundLayer);
-        IsWallDetected = Physics2D.Raycast(transform.position, Vector2.right * FacingDirection, wallDistance, wallLayer);
+        IsWallDetected = Physics2D.Raycast(wallCheckTransform.position, Vector2.right * FacingDirection, wallDistance, wallLayer);
 
     }
 
@@ -102,7 +102,7 @@ public class Entity : MonoBehaviour
         stateMachine.CurrentState.CallAnimationTrigger();
     }
 
-    private void OnDrawGizmos()
+    protected virtual void OnDrawGizmos()
     {
 
         Gizmos.DrawLine(wallCheckTransform.position, new Vector3(wallCheckTransform.position.x + (wallDistance * FacingDirection), wallCheckTransform.position.y));
