@@ -20,7 +20,9 @@ public class Enemy : Entity
     public LayerMask whatIsPlayer;
     private const string PlayerLayer = "Player";
 
-
+    [Header("Battle Data")]
+    public float battleMoveSpeed;
+    public float attackDistance;
 
 
 
@@ -47,10 +49,11 @@ public class Enemy : Entity
     {
         base.OnDrawGizmos();
 
-        if (PlayerDetection()) { Gizmos.color = Color.red; }
-        else { Gizmos.color = Color.green; }
-
+        Gizmos.color = Color.red;
         Gizmos.DrawLine(playerCheck.position, new Vector3(playerCheck.position.x + (FacingDirection * playerCheckRadius), playerCheck.position.y));
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawLine(playerCheck.position, new Vector3(playerCheck.position.x + (FacingDirection * attackDistance), playerCheck.position.y));
     }
 
 

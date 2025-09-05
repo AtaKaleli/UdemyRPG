@@ -21,7 +21,7 @@ public class Enemy_MoveState : Enemy_GroundedState
 
     private void HandleMovement()
     {
-        Anim.SetFloat("moveSpeedMultiplier", enemy.moveSpeedMultiplier);
+        
         enemy.SetVelocity(enemy.moveSpeed * enemy.FacingDirection, Rb.linearVelocityY);
     }
 }

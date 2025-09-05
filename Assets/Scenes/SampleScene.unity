@@ -2431,6 +2431,8 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 256
+  battleMoveSpeed: 4
+  attackDistance: 2
 --- !u!4 &1379006302
 Transform:
   m_ObjectHideFlags: 0
