@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Player_WallJumpState : EntityState
+public class Player_WallJumpState : PlayerState
 {
     public Player_WallJumpState(Player player, StateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
     {
@@ -21,7 +21,7 @@ public class Player_WallJumpState : EntityState
             stateMachine.ChangeState(player.WallSlideState);
 
 
-        if (playerRb.linearVelocity.y < 0.01f)
+        if (Rb.linearVelocity.y < 0.01f)
             stateMachine.ChangeState(player.FallState);
         
         

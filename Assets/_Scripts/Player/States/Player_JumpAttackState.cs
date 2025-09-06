@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Player_JumpAttackState : EntityState
+public class Player_JumpAttackState : PlayerState
 {
     public Player_JumpAttackState(Player player, StateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
     {
@@ -22,8 +22,8 @@ public class Player_JumpAttackState : EntityState
 
         if (player.IsGroundDetected)
         {
-            player.PlayerAnimation.SetTrigger("jumpAttackTrigger");
-            player.SetVelocity(0, playerRb.linearVelocity.y);
+            player.Anim.SetTrigger("jumpAttackTrigger");
+            player.SetVelocity(0, Rb.linearVelocity.y);
         }
         
         if (animationTriggerCalled)
@@ -36,7 +36,7 @@ public class Player_JumpAttackState : EntityState
     {
         base.Exit();
 
-        player.PlayerAnimation.ResetTrigger("jumpAttackTrigger");
+        player.Anim.ResetTrigger("jumpAttackTrigger");
         
     }
 }

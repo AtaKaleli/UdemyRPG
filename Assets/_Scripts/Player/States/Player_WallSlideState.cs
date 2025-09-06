@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class Player_WallSlideState : EntityState
+public class Player_WallSlideState : PlayerState
 {
 
    
@@ -35,8 +35,8 @@ public class Player_WallSlideState : EntityState
     private void HandleWallSlide()
     {
         if (player.MoveInput.y == -1)
-            player.SetVelocity(player.MoveInput.x, playerRb.linearVelocity.y);
+            player.SetVelocity(player.MoveInput.x, Rb.linearVelocity.y);
         else
-            player.SetVelocity(player.MoveInput.x, playerRb.linearVelocity.y * player.wallSlideMultiplier);
+            player.SetVelocity(player.MoveInput.x, Rb.linearVelocity.y * player.wallSlideMultiplier);
     }
 }
