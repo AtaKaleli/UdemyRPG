@@ -29,7 +29,7 @@ public abstract class EntityState
 
 
         stateTimer -= Time.deltaTime;
-
+        UpdateAnimationParameters();
     }
 
     public virtual void Exit()
@@ -40,5 +40,10 @@ public abstract class EntityState
     public void CallAnimationTrigger()
     {
         animationTriggerCalled = true;
+    }
+
+    public virtual void UpdateAnimationParameters()
+    {
+
     }
 }

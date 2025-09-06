@@ -16,14 +16,17 @@ public abstract class PlayerState : EntityState
     {
         base.Update();
 
-        Anim.SetFloat("yVelocity", Rb.linearVelocity.y);
-
         if (player.Input.Player.Dash.WasPressedThisFrame())
         {
             stateMachine.ChangeState(player.DashState);
         }
     }
 
+    public override void UpdateAnimationParameters()
+    {
+        base.UpdateAnimationParameters();
+        Anim.SetFloat("yVelocity", Rb.linearVelocity.y);
+    }
 
 
 }

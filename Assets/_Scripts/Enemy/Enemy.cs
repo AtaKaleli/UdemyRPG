@@ -23,14 +23,15 @@ public class Enemy : Entity
     [Header("Battle Data")]
     public float battleMoveSpeed;
     public float attackDistance;
+    public float battleTimeDuration;
+    public float minRetreatDistance;
+    public Vector2 retreatVelocity;
 
 
 
 
 
-
-
-    public RaycastHit2D PlayerDetection()
+    public RaycastHit2D IsPlayerDetected()
     {
         RaycastHit2D hit = 
             Physics2D.Raycast(playerCheck.position, Vector2.right * FacingDirection, playerCheckRadius, whatIsPlayer | groundLayer);
@@ -54,6 +55,9 @@ public class Enemy : Entity
 
         Gizmos.color = Color.yellow;
         Gizmos.DrawLine(playerCheck.position, new Vector3(playerCheck.position.x + (FacingDirection * attackDistance), playerCheck.position.y));
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(playerCheck.position, new Vector3(playerCheck.position.x + (FacingDirection * minRetreatDistance), playerCheck.position.y));
     }
 
 

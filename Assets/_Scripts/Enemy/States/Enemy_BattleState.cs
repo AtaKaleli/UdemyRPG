@@ -3,7 +3,7 @@ using UnityEngine;
 public class Enemy_BattleState : EnemyState
 {
     private Transform player;
-
+    private float lastTimeInBattle;
 
     public Enemy_BattleState(Enemy enemy, StateMachine stateMachine, string animBoolName) : base(enemy, stateMachine, animBoolName)
     {
@@ -15,7 +15,12 @@ public class Enemy_BattleState : EnemyState
 
         if(player == null)
         {
-            player = enemy.PlayerDetection().transform;
+            player = enemy.IsPlayerDetected().transform;
+        }
+
+        if (ShouldRetreat())
+        {
+            Rb.linearVelocity = new Vector2(enemy.retreatVelocity.x * -DirectionToPlayer(), enemy.retreatVelocity.y);
         }
         
     }
@@ -24,7 +29,17 @@ public class Enemy_BattleState : EnemyState
     {
         base.Update();
 
-        if (IsWithinAttackRange())
+        if (enemy.IsPlayerDetected())
+        {
+            UpdateBattleTimer();
+        }
+
+        if (IsStopChasing())
+        {
+            stateMachine.ChangeState(enemy.IdleState);
+        }
+
+        if (IsWithinAttackRange() && enemy.IsPlayerDetected() )
         {
             stateMachine.ChangeState(enemy.AttackState);
         }
@@ -34,6 +49,10 @@ public class Enemy_BattleState : EnemyState
         }
     }
 
+    private void UpdateBattleTimer()
+    {
+        lastTimeInBattle = Time.time;
+    }
 
     private bool IsWithinAttackRange() => enemy.attackDistance > DistanceToPlayer();
 
@@ -54,5 +73,10 @@ public class Enemy_BattleState : EnemyState
 
         return player.position.x > enemy.transform.position.x  ? 1 : -1;
     }
+
+    private bool IsStopChasing() => Time.time > lastTimeInBattle + enemy.battleTimeDuration;
+
+    private bool ShouldRetreat() => DistanceToPlayer() < enemy.minRetreatDistance;
+
 
 }

@@ -12,7 +12,7 @@ public class Enemy_AttackState : EnemyState
 
         if (animationTriggerCalled)
         {
-            stateMachine.ChangeState(enemy.IdleState);
+            stateMachine.ChangeState(enemy.BattleState);
         }
     }
 }
