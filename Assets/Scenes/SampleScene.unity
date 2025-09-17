@@ -2707,7 +2707,6 @@ GameObject:
   - component: {fileID: 1379006301}
   - component: {fileID: 1379006305}
   - component: {fileID: 1379006306}
-  - component: {fileID: 1379006307}
   m_Layer: 9
   m_Name: Enemy_Skeleton
   m_TagString: Untagged
@@ -2843,15 +2842,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1379006300}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85eb41d3b7ba05a4997c9cb7401a47d1, type: 3}
+  m_Script: {fileID: 11500000, guid: 6395265496e357a45bf5b4b3a9f2b5d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetCheck: {fileID: 1460819228}
-  targetCheckRadius: 1
+  detectionCheck: {fileID: 1460819228}
+  detectionRadius: 1
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
-  damageAmount: 1
+  damageAmount: 10
 --- !u!114 &1379006306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2861,25 +2860,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1379006300}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4425730d3c778704b862c8675aeaea51, type: 3}
+  m_Script: {fileID: 11500000, guid: 3bed93ba95790234386ccf9e3c215672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 1000
+  maxHP: 100
   isDead: 0
---- !u!114 &1379006307
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1379006300}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89b183deb9c647a4b9d909b38a4d8cb2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onDamageMaterial: {fileID: 2100000, guid: a300a798a06801644bc90d1f99b24e92, type: 2}
-  onDamageVFXDuration: 0.15
 --- !u!1 &1460819227
 GameObject:
   m_ObjectHideFlags: 0
@@ -2905,7 +2890,7 @@ Transform:
   m_GameObject: {fileID: 1460819227}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.06, y: -0.33, z: 0}
+  m_LocalPosition: {x: 1.29, y: -0.22, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3012,7 +2997,6 @@ GameObject:
   - component: {fileID: 1532871505}
   - component: {fileID: 1532871509}
   - component: {fileID: 1532871510}
-  - component: {fileID: 1532871511}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -3144,15 +3128,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1532871504}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85eb41d3b7ba05a4997c9cb7401a47d1, type: 3}
+  m_Script: {fileID: 11500000, guid: 6395265496e357a45bf5b4b3a9f2b5d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetCheck: {fileID: 803706664}
-  targetCheckRadius: 1
+  detectionCheck: {fileID: 803706664}
+  detectionRadius: 1
   targetLayer:
     serializedVersion: 2
     m_Bits: 512
-  damageAmount: 10
+  damageAmount: 50
 --- !u!114 &1532871510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3162,24 +3146,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1532871504}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89b183deb9c647a4b9d909b38a4d8cb2, type: 3}
+  m_Script: {fileID: 11500000, guid: 765ee1aaf66379b47887a20545c69810, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onDamageMaterial: {fileID: 2100000, guid: a300a798a06801644bc90d1f99b24e92, type: 2}
-  onDamageVFXDuration: 0.15
---- !u!114 &1532871511
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1532871504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45900014993b23f49996106a24de00f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHp: 100
+  maxHP: 100
   isDead: 0
 --- !u!1 &1624060590
 GameObject:

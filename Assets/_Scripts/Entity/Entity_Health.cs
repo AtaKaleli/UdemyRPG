@@ -1,31 +1,25 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Entity_Health : MonoBehaviour
 {
-    [SerializeField] protected float maxHp = 100;
-    [SerializeField] protected bool isDead;
+    [SerializeField] private float maxHP;
 
-    private Entity_VFX entity_VFX;
+    public bool isDead;
 
-    private void Awake()
-    {
-        entity_VFX = GetComponent<Entity_VFX>();
-    }
-
-    public virtual void TakeDamage(float damage, Transform damageDealer)
+    public virtual void TakeDamage(float damage, Transform damageProvider)
     {
         if (isDead) return;
 
-        entity_VFX?.OnDamageFlashMaterial();
-        ReduceHp(damage);
+        ReduceHP(damage);
     }
 
-    private void ReduceHp(float damage)
+    private void ReduceHP(float damage)
     {
-        maxHp -= damage;
+        maxHP -= damage;
 
-        if(maxHp <= 0)
+        if(maxHP <= 0)
         {
             Die();
         }

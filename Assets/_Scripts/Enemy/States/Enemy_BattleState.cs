@@ -70,7 +70,10 @@ public class Enemy_BattleState : EnemyState
     private int DirectionToPlayer()
     {
         if (player == null)
+        {
+            Debug.Log("I am null");
             return 0;
+        }
 
         return player.position.x > enemy.transform.position.x  ? 1 : -1;
     }

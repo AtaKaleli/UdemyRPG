@@ -2,20 +2,20 @@ using UnityEngine;
 
 public class Enemy_Health : Entity_Health
 {
-
     private Enemy enemy => GetComponent<Enemy>();
 
-
-
-    public override void TakeDamage(float damage, Transform damageDealer)
+    public override void TakeDamage(float damage, Transform damageProvider)
     {
-        if(damageDealer.GetComponent<Player>() != null)
+        if(damageProvider.GetComponent<Player>() != null)
         {
-            enemy.TryEnterBattleState(damageDealer);
+            enemy.Player = damageProvider;
         }
 
-        
-        base.TakeDamage(damage,damageDealer);
+        enemy.TryEnterBattleState();
+
+        base.TakeDamage(damage, damageProvider);
     }
+
+
 
 }
