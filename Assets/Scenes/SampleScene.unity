@@ -2582,6 +2582,7 @@ GameObject:
   - component: {fileID: 1256273736}
   - component: {fileID: 1256273735}
   - component: {fileID: 1256273737}
+  - component: {fileID: 1256273738}
   m_Layer: 0
   m_Name: Animator
   m_TagString: Untagged
@@ -2693,6 +2694,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8014ae958865970458e495247fea363f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1256273738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1256273733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5abb9388a106be46a42fe0f3ce16823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashMat: {fileID: 2100000, guid: a300a798a06801644bc90d1f99b24e92, type: 2}
+  flashTime: 0.15
 --- !u!1 &1379006300
 GameObject:
   m_ObjectHideFlags: 0
@@ -2864,7 +2879,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 100
+  currentHp: 0
   isDead: 0
+  knockbackPower: {x: 3, y: 2}
+  knockbackDuration: 0.15
+  heavyDamageThreshold: 0.3
+  knockbackPowerMultiplier: 2.5
+  knockbackDurationMultiplier: 2.5
 --- !u!1 &1460819227
 GameObject:
   m_ObjectHideFlags: 0
@@ -3136,7 +3157,7 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 512
-  damageAmount: 50
+  damageAmount: 35
 --- !u!114 &1532871510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3150,7 +3171,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 100
+  currentHp: 0
   isDead: 0
+  knockbackPower: {x: 3, y: 2}
+  knockbackDuration: 0.15
+  heavyDamageThreshold: 0.3
+  knockbackPowerMultiplier: 1.5
+  knockbackDurationMultiplier: 1.5
 --- !u!1 &1624060590
 GameObject:
   m_ObjectHideFlags: 0
@@ -3315,6 +3342,7 @@ GameObject:
   - component: {fileID: 1836935696}
   - component: {fileID: 1836935697}
   - component: {fileID: 1836935698}
+  - component: {fileID: 1836935699}
   m_Layer: 0
   m_Name: Animator
   m_TagString: Untagged
@@ -3426,6 +3454,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8014ae958865970458e495247fea363f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1836935699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1836935694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5abb9388a106be46a42fe0f3ce16823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashMat: {fileID: 2100000, guid: a300a798a06801644bc90d1f99b24e92, type: 2}
+  flashTime: 0.15
 --- !u!1 &1875383029
 GameObject:
   m_ObjectHideFlags: 0

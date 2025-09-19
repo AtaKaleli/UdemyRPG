@@ -19,7 +19,7 @@ public class Enemy : Entity
     public float playerCheckRadius;
     public LayerMask whatIsPlayer;
     private const string PlayerLayer = "Player";
-    public Transform Player { get; set; }
+    public Transform Player { get; private set; }
 
     [Header("Battle Data")]
     public float battleMoveSpeed;
@@ -32,13 +32,14 @@ public class Enemy : Entity
 
 
 
-    public void TryEnterBattleState()
+    public void TryEnterBattleState(Transform player)
     {
         if(stateMachine.CurrentState == BattleState || stateMachine.CurrentState == AttackState)
         {
             return;
         }
 
+        this.Player = player;
         stateMachine.ChangeState(BattleState);
     }
     

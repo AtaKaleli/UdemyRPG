@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Entity : MonoBehaviour
@@ -28,6 +30,12 @@ public class Entity : MonoBehaviour
     [SerializeField] private float wallDistance;
     [SerializeField] private LayerMask wallLayer;
     public bool IsWallDetected { get; private set; }
+
+
+    //condition variables
+    private bool isKnocked;
+    private Coroutine knockbackCo;
+
 
 
 
@@ -61,6 +69,8 @@ public class Entity : MonoBehaviour
 
     public void SetVelocity(float xVelocity, float yVelocity)
     {
+        if (isKnocked) return;
+
         Rb.linearVelocity = new Vector2(xVelocity, yVelocity);
         HandleFlip();
     }
@@ -110,6 +120,25 @@ public class Entity : MonoBehaviour
         Gizmos.DrawLine(groundCheckTransform.position, new Vector3(groundCheckTransform.position.x, groundCheckTransform.position.y - groundDistance));
     }
 
+
+    public void ReceiveKnockback(Vector2 knockback, int knockbackDirection, float duration)
+    {
+        if(knockbackCo != null)
+        {
+            StopCoroutine(knockbackCo);
+        }
+
+        knockbackCo = StartCoroutine(KnockbackCoroutine(knockback, knockbackDirection, duration));
+    }
+
+    private IEnumerator KnockbackCoroutine(Vector2 knockback, int knockbackDirection, float duration)
+    {
+        isKnocked = true;
+        Rb.linearVelocity = new Vector2(knockback.x * knockbackDirection, knockback.y);
+        yield return new WaitForSeconds(duration);
+        Rb.linearVelocity = Vector2.zero;
+        isKnocked = false;
+    }
 
 
 }
