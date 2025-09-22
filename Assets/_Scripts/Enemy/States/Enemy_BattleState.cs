@@ -13,9 +13,8 @@ public class Enemy_BattleState : EnemyState
     {
         base.Enter();
 
-        player ??= enemy.GetPlayerReference();
-        
 
+        player ??= enemy.GetPlayerReference();
 
         if (ShouldRetreat())
         {
@@ -28,6 +27,9 @@ public class Enemy_BattleState : EnemyState
     {
         base.Update();
 
+
+       
+
         if (enemy.IsPlayerDetected())
         {
             UpdateBattleTimer();
@@ -38,7 +40,7 @@ public class Enemy_BattleState : EnemyState
             stateMachine.ChangeState(enemy.IdleState);
         }
 
-        if (IsWithinAttackRange() && enemy.IsPlayerDetected() )
+        if (IsWithinAttackRange() && enemy.IsPlayerDetected())
         {
             stateMachine.ChangeState(enemy.AttackState);
         }

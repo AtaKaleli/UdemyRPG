@@ -43,8 +43,8 @@ public class Entity_Health : MonoBehaviour
     public virtual void TakeDamage(float damage, Transform damageProvider)
     {
         if (isDead) return;
-
-
+        
+        
 
         entity?.ReceiveKnockback(CalculateKnockbackPower(knockbackPower, damage),
             CalculateKnockbackDirection(damageProvider),
@@ -52,6 +52,7 @@ public class Entity_Health : MonoBehaviour
 
 
         entity_VFX?.PlayOnDamageVFX();
+        
         ReduceHP(damage);
     }
 
@@ -68,6 +69,7 @@ public class Entity_Health : MonoBehaviour
     private void Die()
     {
         isDead = true;
+        entity.EntityDeath();
     }
 
     private bool HasReceivedHeavyDamage(float damage) => damage > maxHP * heavyDamageThreshold;

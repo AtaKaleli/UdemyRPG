@@ -6,6 +6,7 @@ public class Enemy : Entity
     public Enemy_MoveState MoveState;
     public Enemy_AttackState AttackState;
     public Enemy_BattleState BattleState;
+    public Enemy_DeadState DeadState;
 
     [Header("Movement Data")]
     public float moveSpeed;
@@ -19,7 +20,7 @@ public class Enemy : Entity
     public float playerCheckRadius;
     public LayerMask whatIsPlayer;
     private const string PlayerLayer = "Player";
-    public Transform Player { get; private set; }
+    public Transform PlayerTransform { get; private set; }
 
     [Header("Battle Data")]
     public float battleMoveSpeed;
@@ -30,6 +31,12 @@ public class Enemy : Entity
 
 
 
+    public override void EntityDeath()
+    {
+        base.EntityDeath();
+
+        stateMachine.ChangeState(DeadState);
+    }
 
 
     public void TryEnterBattleState(Transform player)
@@ -39,18 +46,18 @@ public class Enemy : Entity
             return;
         }
 
-        this.Player = player;
+        this.PlayerTransform = player;
         stateMachine.ChangeState(BattleState);
     }
     
     public Transform GetPlayerReference()
     {
-        if(Player == null)
+        if(PlayerTransform == null)
         {
-            Player = IsPlayerDetected().transform;
+            PlayerTransform = IsPlayerDetected().transform;
         }
 
-        return Player;
+        return PlayerTransform;
     }
 
     public RaycastHit2D IsPlayerDetected()
@@ -67,6 +74,10 @@ public class Enemy : Entity
 
         return hit;
     }
+
+
+
+    
 
     protected override void OnDrawGizmos()
     {

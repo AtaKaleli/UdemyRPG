@@ -2878,7 +2878,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bed93ba95790234386ccf9e3c215672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 100
+  maxHP: 10
   currentHp: 0
   isDead: 0
   knockbackPower: {x: 3, y: 2}
@@ -3170,7 +3170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 765ee1aaf66379b47887a20545c69810, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 100
+  maxHP: 10
   currentHp: 0
   isDead: 0
   knockbackPower: {x: 3, y: 2}

@@ -1,8 +1,13 @@
+using System;
 using UnityEngine;
 
 public class Player : Entity
 {
-    public PlayerInputSet Input { get; private set; }
+
+
+
+
+    public PlayerInputSet Input { get; set; }
 
     public Player_IdleState IdleState { get; private set; }
     public Player_MoveState MoveState { get; private set; }
@@ -13,7 +18,7 @@ public class Player : Entity
     public Player_DashState DashState { get; private set; }
     public Player_BasicAttackState BasicAttackState { get; private set; }
     public Player_JumpAttackState JumpAttackState { get; private set; }
-
+    public Player_DeadState DeadState { get; private set; }
 
 
 
@@ -60,6 +65,7 @@ public class Player : Entity
         DashState = new Player_DashState(this, stateMachine, "dashState");
         BasicAttackState = new Player_BasicAttackState(this, stateMachine, "basicAttackState");
         JumpAttackState = new Player_JumpAttackState(this, stateMachine, "jumpAttackState");
+        DeadState = new Player_DeadState(this, stateMachine, "deadState");
     }
 
     private void OnEnable()
@@ -82,5 +88,13 @@ public class Player : Entity
         base.Start();
 
         stateMachine.Initialize(IdleState);
+    }
+
+    public override void EntityDeath()
+    {
+        base.EntityDeath();
+
+
+        stateMachine.ChangeState(DeadState);
     }
 }

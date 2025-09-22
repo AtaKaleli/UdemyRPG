@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Entity : MonoBehaviour
@@ -39,13 +38,14 @@ public class Entity : MonoBehaviour
 
 
 
+
     protected virtual void Awake()
     {
         Anim = GetComponentInChildren<Animator>();
         Rb = GetComponent<Rigidbody2D>();
         stateMachine = new StateMachine();
 
-        
+
     }
 
 
@@ -66,6 +66,10 @@ public class Entity : MonoBehaviour
 
     }
 
+    public virtual void EntityDeath()
+    {
+
+    }
 
     public void SetVelocity(float xVelocity, float yVelocity)
     {
@@ -123,7 +127,7 @@ public class Entity : MonoBehaviour
 
     public void ReceiveKnockback(Vector2 knockback, int knockbackDirection, float duration)
     {
-        if(knockbackCo != null)
+        if (knockbackCo != null)
         {
             StopCoroutine(knockbackCo);
         }
@@ -139,6 +143,8 @@ public class Entity : MonoBehaviour
         Rb.linearVelocity = Vector2.zero;
         isKnocked = false;
     }
+
+
 
 
 }

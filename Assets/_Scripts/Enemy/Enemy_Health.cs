@@ -6,13 +6,14 @@ public class Enemy_Health : Entity_Health
 
     public override void TakeDamage(float damage, Transform damageProvider)
     {
-        if(damageProvider.GetComponent<Player>() != null)
+        base.TakeDamage(damage, damageProvider);
+
+        if (damageProvider.GetComponent<Player>() != null)
         {
             enemy.TryEnterBattleState(damageProvider);
         }
 
 
-        base.TakeDamage(damage, damageProvider);
     }
 
 
