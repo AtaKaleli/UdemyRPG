@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class Entity_Health : MonoBehaviour
+public class Entity_Health : MonoBehaviour,IDamagable
 {
     private Entity entity;
     private Entity_VFX entity_VFX;
