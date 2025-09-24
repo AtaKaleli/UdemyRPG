@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class Enemy : Entity
@@ -7,6 +8,7 @@ public class Enemy : Entity
     public Enemy_AttackState AttackState;
     public Enemy_BattleState BattleState;
     public Enemy_DeadState DeadState;
+    public Enemy_StunnedState StunnedState;
 
     [Header("Movement Data")]
     public float moveSpeed;
@@ -29,7 +31,15 @@ public class Enemy : Entity
     public float minRetreatDistance;
     public Vector2 retreatVelocity;
 
+    [Header("Stunned Data")]
+    public float stunnedDuration;
+    public Vector2 stunnedVelocity;
+    protected bool canBeStunnned;
 
+
+
+
+    public void SetCounterWindow(bool value) => canBeStunnned = value;
 
     public override void EntityDeath()
     {
