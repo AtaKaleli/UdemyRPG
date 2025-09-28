@@ -128,14 +128,14 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.7
+  - time: 0.8
     functionName: AttackTrigger
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.7
+  - time: 0.8
     functionName: DisableCounterAttackWindow
     data: 
     objectReferenceParameter: {fileID: 0}

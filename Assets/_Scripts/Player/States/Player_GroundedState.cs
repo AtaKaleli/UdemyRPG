@@ -20,6 +20,10 @@ public class Player_GroundedState : PlayerState
             stateMachine.ChangeState(player.BasicAttackState);
         }
 
+        if (player.Input.Player.CounterAttack.WasPressedThisFrame())
+        {
+            stateMachine.ChangeState(player.CounterAttackState);
+        }
 
         if (player.Rb.linearVelocity.y < 0 && !player.IsGroundDetected)
         {

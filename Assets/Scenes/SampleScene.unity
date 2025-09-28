@@ -3018,8 +3018,8 @@ GameObject:
   - component: {fileID: 1532871508}
   - component: {fileID: 1532871507}
   - component: {fileID: 1532871505}
-  - component: {fileID: 1532871509}
   - component: {fileID: 1532871510}
+  - component: {fileID: 1532871511}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -3142,24 +3142,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &1532871509
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1532871504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6395265496e357a45bf5b4b3a9f2b5d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  detectionCheck: {fileID: 803706664}
-  detectionRadius: 1
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 1536
-  damageAmount: 35
 --- !u!114 &1532871510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3180,6 +3162,25 @@ MonoBehaviour:
   heavyDamageThreshold: 0.3
   knockbackPowerMultiplier: 1.5
   knockbackDurationMultiplier: 1.5
+--- !u!114 &1532871511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1532871504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dacfa83a93113f44a5bd4fb424eb79c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectionCheck: {fileID: 803706664}
+  detectionRadius: 1
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 1536
+  damageAmount: 10
+  counterAttackRecoveryDuration: 0.25
 --- !u!1 &1624060590
 GameObject:
   m_ObjectHideFlags: 0

@@ -40,6 +40,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "CounterAttack",
+                    "type": "Button",
+                    "id": "ae1468f1-ac52-4be6-94ea-3b88f1fa35b1",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -128,6 +137,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d757d5f7-b4ad-40f0-ac7d-fb8d2a234b3f",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CounterAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

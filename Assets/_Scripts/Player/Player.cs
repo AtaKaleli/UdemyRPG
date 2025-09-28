@@ -19,6 +19,7 @@ public class Player : Entity
     public Player_BasicAttackState BasicAttackState { get; private set; }
     public Player_JumpAttackState JumpAttackState { get; private set; }
     public Player_DeadState DeadState { get; private set; }
+    public Player_CounterAttackState CounterAttackState { get; private set; }
 
 
 
@@ -66,6 +67,7 @@ public class Player : Entity
         BasicAttackState = new Player_BasicAttackState(this, stateMachine, "basicAttackState");
         JumpAttackState = new Player_JumpAttackState(this, stateMachine, "jumpAttackState");
         DeadState = new Player_DeadState(this, stateMachine, "deadState");
+        CounterAttackState = new Player_CounterAttackState(this, stateMachine, "counterAttackState");
     }
 
     private void OnEnable()
