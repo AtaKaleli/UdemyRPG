@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Entity_Combat : MonoBehaviour
 {
-
+    private Entity_VFX entity_VFX;
 
     [Header("Target Detection Data")]
     [SerializeField] private Transform detectionCheck;
@@ -14,13 +14,22 @@ public class Entity_Combat : MonoBehaviour
 
 
 
+    private void Awake()
+    {
+        entity_VFX = GetComponentInChildren<Entity_VFX>();
+    }
 
     public void PerformAttack()
     {
-        foreach (var collider in DetectedColliders())
+        foreach (var target in DetectedColliders())
         {
-            IDamagable damagable = collider.GetComponent<IDamagable>();
+            IDamagable damagable = target.GetComponent<IDamagable>();
+
+            if (damagable == null)
+                continue; // skip target, go to next one
+
             damagable.TakeDamage(damageAmount, transform);
+            entity_VFX.CreateOnHitVFX(target.transform);
         }
     }
 

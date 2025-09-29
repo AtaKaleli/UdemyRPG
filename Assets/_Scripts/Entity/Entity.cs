@@ -1,11 +1,12 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
+    public event Action OnFlipped;
+
     protected StateMachine stateMachine;
-
-
     public Animator Anim { get; private set; }
     public Rigidbody2D Rb { get; private set; }
 
@@ -108,6 +109,8 @@ public class Entity : MonoBehaviour
         isFacingRight = !isFacingRight;
         FacingDirection = FacingDirection * -1;
         transform.Rotate(0f, 180f, 0f);
+
+        OnFlipped?.Invoke();
     }
 
 

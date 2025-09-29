@@ -7,15 +7,25 @@ public class Entity_VFX : MonoBehaviour
     private Material defaultMat;
     private Coroutine onDamageCoroutine;
 
-    [Header("Took Damage Data")]
+    [Header("On Taking Damage Data")]
     [SerializeField] private Material flashMat;
     [SerializeField] private float flashTime;
 
+
+    [Header("On Doing Damage Data")]
+    [SerializeField] private GameObject hitVFX;
+    [SerializeField] private Color hitVFXColor;
 
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
         defaultMat = sr.material;
+    }
+
+    public void CreateOnHitVFX(Transform targetTransform)
+    {
+        GameObject newHitVFX = Instantiate(hitVFX, targetTransform.position, Quaternion.identity);
+        newHitVFX.GetComponentInChildren<SpriteRenderer>().color = hitVFXColor;
     }
 
     public void PlayOnDamageVFX()

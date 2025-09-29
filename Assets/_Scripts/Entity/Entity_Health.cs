@@ -1,12 +1,14 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Entity_Health : MonoBehaviour,IDamagable
 {
     private Entity entity;
     private Entity_VFX entity_VFX;
 
+    private Slider healthBar;
 
 
     [Header("HP Data")]
@@ -32,11 +34,13 @@ public class Entity_Health : MonoBehaviour,IDamagable
     {
         entity = GetComponent<Entity>();
         entity_VFX = GetComponentInChildren<Entity_VFX>();
+        healthBar = GetComponentInChildren<Slider>();
     }
 
     private void Start()
     {
         currentHp = maxHP;
+        UpdateHealthBar();
     }
 
 
@@ -59,6 +63,7 @@ public class Entity_Health : MonoBehaviour,IDamagable
     private void ReduceHP(float damage)
     {
         currentHp -= damage;
+        UpdateHealthBar();
 
         if (currentHp <= 0)
         {
@@ -70,6 +75,14 @@ public class Entity_Health : MonoBehaviour,IDamagable
     {
         isDead = true;
         entity.EntityDeath();
+    }
+
+    private void UpdateHealthBar()
+    {
+        if (healthBar == null)
+            return;
+
+        healthBar.value = currentHp / maxHP;
     }
 
     private bool HasReceivedHeavyDamage(float damage) => damage > maxHP * heavyDamageThreshold;
