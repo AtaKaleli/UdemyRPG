@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class Enemy : Entity
@@ -6,6 +7,8 @@ public class Enemy : Entity
     public Enemy_MoveState MoveState;
     public Enemy_AttackState AttackState;
     public Enemy_BattleState BattleState;
+    public Enemy_DeadState DeadState;
+    public Enemy_StunnedState StunnedState;
 
     [Header("Movement Data")]
     public float moveSpeed;
@@ -19,6 +22,7 @@ public class Enemy : Entity
     public float playerCheckRadius;
     public LayerMask whatIsPlayer;
     private const string PlayerLayer = "Player";
+    public Transform PlayerTransform { get; private set; }
 
     [Header("Battle Data")]
     public float battleMoveSpeed;
@@ -27,9 +31,44 @@ public class Enemy : Entity
     public float minRetreatDistance;
     public Vector2 retreatVelocity;
 
+    [Header("Stunned Data")]
+    public float stunnedDuration;
+    public Vector2 stunnedVelocity;
+    protected bool canBeStunnned;
 
 
 
+
+    public void SetCounterWindow(bool value) => canBeStunnned = value;
+
+    public override void EntityDeath()
+    {
+        base.EntityDeath();
+
+        stateMachine.ChangeState(DeadState);
+    }
+
+
+    public void TryEnterBattleState(Transform player)
+    {
+        if(stateMachine.CurrentState == BattleState || stateMachine.CurrentState == AttackState)
+        {
+            return;
+        }
+
+        this.PlayerTransform = player;
+        stateMachine.ChangeState(BattleState);
+    }
+    
+    public Transform GetPlayerReference()
+    {
+        if(PlayerTransform == null)
+        {
+            PlayerTransform = IsPlayerDetected().transform;
+        }
+
+        return PlayerTransform;
+    }
 
     public RaycastHit2D IsPlayerDetected()
     {
@@ -45,6 +84,10 @@ public class Enemy : Entity
 
         return hit;
     }
+
+
+
+    
 
     protected override void OnDrawGizmos()
     {

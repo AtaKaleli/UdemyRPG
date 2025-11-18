@@ -13,10 +13,8 @@ public class Enemy_BattleState : EnemyState
     {
         base.Enter();
 
-        if(player == null)
-        {
-            player = enemy.IsPlayerDetected().transform;
-        }
+
+        player ??= enemy.GetPlayerReference();
 
         if (ShouldRetreat())
         {
@@ -29,6 +27,9 @@ public class Enemy_BattleState : EnemyState
     {
         base.Update();
 
+
+       
+
         if (enemy.IsPlayerDetected())
         {
             UpdateBattleTimer();
@@ -39,7 +40,7 @@ public class Enemy_BattleState : EnemyState
             stateMachine.ChangeState(enemy.IdleState);
         }
 
-        if (IsWithinAttackRange() && enemy.IsPlayerDetected() )
+        if (IsWithinAttackRange() && enemy.IsPlayerDetected())
         {
             stateMachine.ChangeState(enemy.AttackState);
         }
@@ -69,7 +70,10 @@ public class Enemy_BattleState : EnemyState
     private int DirectionToPlayer()
     {
         if (player == null)
+        {
+            Debug.Log("I am null");
             return 0;
+        }
 
         return player.position.x > enemy.transform.position.x  ? 1 : -1;
     }

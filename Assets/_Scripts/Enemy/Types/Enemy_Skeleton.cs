@@ -1,11 +1,8 @@
 using UnityEngine;
 
-public class Enemy_Skeleton : Enemy
+public class Enemy_Skeleton : Enemy, ICounterable
 {
-
-    
-
-
+    public bool CanBeCountered => canBeStunnned;
 
     protected override void Awake()
     {
@@ -15,6 +12,8 @@ public class Enemy_Skeleton : Enemy
         MoveState = new Enemy_MoveState(this, stateMachine, "moveState");
         AttackState = new Enemy_AttackState(this, stateMachine, "attackState");
         BattleState = new Enemy_BattleState(this, stateMachine, "battleState");
+        DeadState = new Enemy_DeadState(this, stateMachine, "deadState");
+        StunnedState = new Enemy_StunnedState(this, stateMachine, "stunnedState");
     }
 
     protected override void Start()
@@ -22,5 +21,14 @@ public class Enemy_Skeleton : Enemy
         base.Start();
 
         stateMachine.Initialize(IdleState);
+    }
+
+
+    public void HandleCounter()
+    {
+        if (!CanBeCountered)
+            return;
+
+        stateMachine.ChangeState(StunnedState);
     }
 }

@@ -1,10 +1,12 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
+    public event Action OnFlipped;
+
     protected StateMachine stateMachine;
-
-
     public Animator Anim { get; private set; }
     public Rigidbody2D Rb { get; private set; }
 
@@ -30,6 +32,13 @@ public class Entity : MonoBehaviour
     public bool IsWallDetected { get; private set; }
 
 
+    //condition variables
+    private bool isKnocked;
+    private Coroutine knockbackCo;
+
+
+
+
 
     protected virtual void Awake()
     {
@@ -37,7 +46,7 @@ public class Entity : MonoBehaviour
         Rb = GetComponent<Rigidbody2D>();
         stateMachine = new StateMachine();
 
-        
+
     }
 
 
@@ -58,9 +67,15 @@ public class Entity : MonoBehaviour
 
     }
 
+    public virtual void EntityDeath()
+    {
+
+    }
 
     public void SetVelocity(float xVelocity, float yVelocity)
     {
+        if (isKnocked) return;
+
         Rb.linearVelocity = new Vector2(xVelocity, yVelocity);
         HandleFlip();
     }
@@ -94,6 +109,8 @@ public class Entity : MonoBehaviour
         isFacingRight = !isFacingRight;
         FacingDirection = FacingDirection * -1;
         transform.Rotate(0f, 180f, 0f);
+
+        OnFlipped?.Invoke();
     }
 
 
@@ -109,6 +126,27 @@ public class Entity : MonoBehaviour
 
         Gizmos.DrawLine(groundCheckTransform.position, new Vector3(groundCheckTransform.position.x, groundCheckTransform.position.y - groundDistance));
     }
+
+
+    public void ReceiveKnockback(Vector2 knockback, int knockbackDirection, float duration)
+    {
+        if (knockbackCo != null)
+        {
+            StopCoroutine(knockbackCo);
+        }
+
+        knockbackCo = StartCoroutine(KnockbackCoroutine(knockback, knockbackDirection, duration));
+    }
+
+    private IEnumerator KnockbackCoroutine(Vector2 knockback, int knockbackDirection, float duration)
+    {
+        isKnocked = true;
+        Rb.linearVelocity = new Vector2(knockback.x * knockbackDirection, knockback.y);
+        yield return new WaitForSeconds(duration);
+        Rb.linearVelocity = Vector2.zero;
+        isKnocked = false;
+    }
+
 
 
 

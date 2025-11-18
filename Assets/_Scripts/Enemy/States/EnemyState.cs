@@ -4,6 +4,7 @@ public class EnemyState : EntityState
 {
     protected Enemy enemy; // for state changes
 
+
     public EnemyState(Enemy enemy, StateMachine stateMachine, string animBoolName) : base(stateMachine, animBoolName)
     {
         this.enemy = enemy;
@@ -12,6 +13,12 @@ public class EnemyState : EntityState
         Rb = enemy.Rb;
     }
 
+    public override void Enter()
+    {
+        base.Enter();
+
+        
+    }
 
     public override void UpdateAnimationParameters()
     {
