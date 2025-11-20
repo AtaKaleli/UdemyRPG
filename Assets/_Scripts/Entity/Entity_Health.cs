@@ -7,12 +7,12 @@ public class Entity_Health : MonoBehaviour,IDamagable
 {
     private Entity entity;
     private Entity_VFX entity_VFX;
+    private Entity_StatSystem entity_Stat;
 
     private Slider healthBar;
 
 
     [Header("HP Data")]
-    [SerializeField] private float maxHP;
     public float currentHp;
     public bool isDead;
 
@@ -34,12 +34,13 @@ public class Entity_Health : MonoBehaviour,IDamagable
     {
         entity = GetComponent<Entity>();
         entity_VFX = GetComponentInChildren<Entity_VFX>();
+        entity_Stat = GetComponent<Entity_StatSystem>();
         healthBar = GetComponentInChildren<Slider>();
     }
 
     private void Start()
     {
-        currentHp = maxHP;
+        currentHp = entity_Stat.GetMaxHealth();
         UpdateHealthBar();
     }
 
@@ -82,10 +83,10 @@ public class Entity_Health : MonoBehaviour,IDamagable
         if (healthBar == null)
             return;
 
-        healthBar.value = currentHp / maxHP;
+        healthBar.value = currentHp / entity_Stat.GetMaxHealth();
     }
 
-    private bool HasReceivedHeavyDamage(float damage) => damage > maxHP * heavyDamageThreshold;
+    private bool HasReceivedHeavyDamage(float damage) => damage > entity_Stat.GetMaxHealth() * heavyDamageThreshold;
     private Vector2 CalculateKnockbackPower(Vector2 knockbackPower, float damage) => HasReceivedHeavyDamage(damage) ? knockbackPower * knockbackPowerMultiplier : knockbackPower;
     private float CalculateKnockbackDuration(float knockbackDuration, float damage) => HasReceivedHeavyDamage(damage) ? knockbackDuration * knockbackDurationMultiplier : knockbackDuration;
     private int CalculateKnockbackDirection(Transform damageProvider) => damageProvider.position.x > transform.position.x ? -1 : 1;
