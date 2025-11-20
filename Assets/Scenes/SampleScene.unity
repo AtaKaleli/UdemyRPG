@@ -3461,9 +3461,10 @@ MonoBehaviour:
       baseValue: 0
     vitality:
       baseValue: 0
+  vitalityHealthMultiplier: 5
   offensiveStats:
     damage:
-      baseValue: 10
+      baseValue: 0
     critPower:
       baseValue: 0
     critChance:
@@ -3485,6 +3486,8 @@ MonoBehaviour:
       baseValue: 0
     lightningResistance:
       baseValue: 0
+  agilityEvasionMultiplier: 0.5
+  evasionCap: 0
 --- !u!1 &1460819227
 GameObject:
   m_ObjectHideFlags: 0
@@ -3755,8 +3758,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHp: 0
   isDead: 0
-  knockbackPower: {x: 0, y: 0}
-  knockbackDuration: 0.15
+  knockbackPower: {x: 5, y: 3}
+  knockbackDuration: 0.2
   heavyDamageThreshold: 0.3
   knockbackPowerMultiplier: 1.5
   knockbackDurationMultiplier: 1.5
@@ -3801,10 +3804,11 @@ MonoBehaviour:
     intelligence:
       baseValue: 0
     vitality:
-      baseValue: 5
+      baseValue: 0
+  vitalityHealthMultiplier: 5
   offensiveStats:
     damage:
-      baseValue: 10
+      baseValue: 0
     critPower:
       baseValue: 0
     critChance:
@@ -3826,6 +3830,8 @@ MonoBehaviour:
       baseValue: 0
     lightningResistance:
       baseValue: 0
+  agilityEvasionMultiplier: 0.5
+  evasionCap: 0
 --- !u!1 &1582717501
 GameObject:
   m_ObjectHideFlags: 0

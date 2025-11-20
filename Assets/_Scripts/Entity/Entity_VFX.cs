@@ -28,7 +28,7 @@ public class Entity_VFX : MonoBehaviour
         newHitVFX.GetComponentInChildren<SpriteRenderer>().color = hitVFXColor;
     }
 
-    public void PlayOnDamageVFX()
+    public void PlayOnDamageTakenVFX()
     {
         if(onDamageCoroutine != null)
         {

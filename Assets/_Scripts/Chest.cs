@@ -16,12 +16,14 @@ public class Chest : MonoBehaviour, IDamagable
         entity_VFX = GetComponentInChildren<Entity_VFX>();
     }
 
-    public void TakeDamage(float damage, Transform damageDealer)
+    public bool CanTakeDamage(float damage, Transform damageDealer)
     {
-        entity_VFX.PlayOnDamageVFX();
+        entity_VFX.PlayOnDamageTakenVFX();
         rb.linearVelocity = velocityFeedbackVector;
         rb.angularVelocity = Random.Range(-randomAngularVelocity, randomAngularVelocity);
         anim.SetTrigger("opened");
+
+        return true;
     }
 
 

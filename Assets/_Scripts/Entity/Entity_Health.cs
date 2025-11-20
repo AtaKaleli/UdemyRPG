@@ -1,5 +1,4 @@
-using System;
-using System.Collections;
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -45,21 +44,26 @@ public class Entity_Health : MonoBehaviour,IDamagable
     }
 
 
-    public virtual void TakeDamage(float damage, Transform damageProvider)
+    public virtual bool CanTakeDamage(float damage, Transform damageProvider)
     {
-        if (isDead) return;
-        
-        
+        Debug.Log("I am in entity health");
+        if (isDead || IsAttackAvoided()) return false;
+
 
         entity?.ReceiveKnockback(CalculateKnockbackPower(knockbackPower, damage),
             CalculateKnockbackDirection(damageProvider),
             CalculateKnockbackDuration(knockbackDuration, damage));
 
 
-        entity_VFX?.PlayOnDamageVFX();
+        entity_VFX?.PlayOnDamageTakenVFX();
         
         ReduceHP(damage);
+
+        return true;
     }
+
+    private bool IsAttackAvoided() => Random.Range(0, 100) <= entity_Stat.GetEvasion();
+
 
     private void ReduceHP(float damage)
     {

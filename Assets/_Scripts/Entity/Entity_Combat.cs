@@ -28,8 +28,12 @@ public class Entity_Combat : MonoBehaviour
             if (damagable == null)
                 continue; // skip target, go to next one
 
-            damagable.TakeDamage(damageAmount, transform);
-            entity_VFX.CreateOnHitVFX(target.transform);
+            bool canGiveDamage = damagable.CanTakeDamage(damageAmount, transform);
+
+            if (canGiveDamage)
+            {
+                entity_VFX.CreateOnHitVFX(target.transform);
+            }
         }
     }
 
