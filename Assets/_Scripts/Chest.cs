@@ -18,7 +18,7 @@ public class Chest : MonoBehaviour, IDamagable
 
     public bool CanTakeDamage(float damage, Transform damageDealer)
     {
-        entity_VFX.PlayOnDamageTakenVFX();
+        entity_VFX.PlayOnTakeDamageTakenVFX();
         rb.linearVelocity = velocityFeedbackVector;
         rb.angularVelocity = Random.Range(-randomAngularVelocity, randomAngularVelocity);
         anim.SetTrigger("opened");

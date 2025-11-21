@@ -18,7 +18,7 @@ public class Entity_StatSystem : MonoBehaviour
     [Header("Defensive Stats Releated Data")]
     public Stat_DefensiveGroup defensiveGroup;
     [SerializeField] private float agilityEvasionMultiplier = 0.5f;
-    [SerializeField] private float evasionCap;
+    [SerializeField] private float evasionCap = 85f;
 
 
 
@@ -29,8 +29,34 @@ public class Entity_StatSystem : MonoBehaviour
 
         return baseHP + bonusHP;
 
-        
+
     }
+
+    public float GetPhysicalDamage()
+    {
+        float baseDamage = offensiveStats.damage.GetValue();
+        float bonusDamage = majorStats.strength.GetValue();
+        float totalBaseDamage = baseDamage + bonusDamage;
+
+        bool isCritAttack = IsPerformedCritAttack();
+
+        float baseCritPower = offensiveStats.critPower.GetValue();
+        float bonusCritPower = majorStats.strength.GetValue() * 0.5f;
+        float totalCritPower = baseCritPower + bonusCritPower;
+
+
+        return isCritAttack ? totalBaseDamage * (totalCritPower / 100) : totalBaseDamage;
+    }
+
+    public bool IsPerformedCritAttack()
+    {
+        float baseCritChance = offensiveStats.critChance.GetValue();
+        float bonusCritChance = majorStats.agility.GetValue() * 0.3f;
+        float totalCritChance = baseCritChance + bonusCritChance;
+
+        return Random.Range(0, 100) <= totalCritChance;
+    }
+
 
     public float GetEvasion()
     {
@@ -40,6 +66,8 @@ public class Entity_StatSystem : MonoBehaviour
 
         return Mathf.Clamp(totalEvasion, 0, evasionCap);
     }
+
+
 
 
 }

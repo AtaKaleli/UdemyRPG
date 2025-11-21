@@ -4,38 +4,51 @@ using UnityEngine;
 public class Entity_VFX : MonoBehaviour
 {
     private SpriteRenderer sr;
-    private Material defaultMat;
-    private Coroutine onDamageCoroutine;
+    private Entity entity;
 
     [Header("On Taking Damage Data")]
     [SerializeField] private Material flashMat;
     [SerializeField] private float flashTime;
+    private Material defaultMat;
+    private Coroutine onTakeDamageCoroutine;
 
 
-    [Header("On Doing Damage Data")]
+    [Header("On Doing Normal Hit Data")]
     [SerializeField] private GameObject hitVFX;
+    [SerializeField] private GameObject critHitVFX;
     [SerializeField] private Color hitVFXColor;
+
 
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
+        entity = GetComponentInParent<Entity>();
+
         defaultMat = sr.material;
     }
 
-    public void CreateOnHitVFX(Transform targetTransform)
+    public void CreateOnHitVFX(Transform targetTransform, bool isCritPerformed)
     {
-        GameObject newHitVFX = Instantiate(hitVFX, targetTransform.position, Quaternion.identity);
+        GameObject hitPrefab = isCritPerformed ? critHitVFX : hitVFX;
+
+        GameObject newHitVFX = Instantiate(hitPrefab, targetTransform.position, Quaternion.identity);
         newHitVFX.GetComponentInChildren<SpriteRenderer>().color = hitVFXColor;
+
+        if(entity.FacingDirection == -1 && isCritPerformed)
+        {
+            newHitVFX.transform.Rotate(0, 180, 0);
+        }
     }
 
-    public void PlayOnDamageTakenVFX()
+
+    public void PlayOnTakeDamageTakenVFX()
     {
-        if(onDamageCoroutine != null)
+        if(onTakeDamageCoroutine != null)
         {
-            StopCoroutine(onDamageCoroutine);
+            StopCoroutine(onTakeDamageCoroutine);
         }
 
-        onDamageCoroutine = StartCoroutine(FlashMaterialCoroutine());
+        onTakeDamageCoroutine = StartCoroutine(FlashMaterialCoroutine());
     }
 
     private IEnumerator FlashMaterialCoroutine()

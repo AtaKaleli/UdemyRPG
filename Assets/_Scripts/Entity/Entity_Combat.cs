@@ -3,20 +3,18 @@ using UnityEngine;
 public class Entity_Combat : MonoBehaviour
 {
     private Entity_VFX entity_VFX;
+    private Entity_StatSystem entity_Stat;
 
     [Header("Target Detection Data")]
     [SerializeField] private Transform detectionCheck;
     [SerializeField] private float detectionRadius;
     [SerializeField] private LayerMask targetLayer;
 
-    [Header("Damage Data")]
-    [SerializeField] private float damageAmount;
-
-
 
     private void Awake()
     {
         entity_VFX = GetComponentInChildren<Entity_VFX>();
+        entity_Stat = GetComponent<Entity_StatSystem>();
     }
 
     public void PerformAttack()
@@ -28,14 +26,16 @@ public class Entity_Combat : MonoBehaviour
             if (damagable == null)
                 continue; // skip target, go to next one
 
-            bool canGiveDamage = damagable.CanTakeDamage(damageAmount, transform);
+            bool canGiveDamage = damagable.CanTakeDamage(entity_Stat.GetPhysicalDamage(), transform);
 
             if (canGiveDamage)
             {
-                entity_VFX.CreateOnHitVFX(target.transform);
+                entity_VFX.CreateOnHitVFX(target.transform, entity_Stat.IsPerformedCritAttack());
             }
         }
     }
+
+
 
     protected Collider2D[] DetectedColliders()
     {

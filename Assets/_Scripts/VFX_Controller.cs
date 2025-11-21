@@ -9,12 +9,16 @@ public class VFX_Controller : MonoBehaviour
     [SerializeField] private bool randomPosition = true;
     [SerializeField] private bool randomRotation = true;
 
-    [Header("Offset Data")]
-    [SerializeField] private float xMinOffset;
-    [SerializeField] private float xMaxOffset;
+    [Header("Position Offset Data")]
+    [SerializeField] private float xMinPosOffset;
+    [SerializeField] private float xMaxPosOffset;
     [Space]
-    [SerializeField] private float yMinOffset;
-    [SerializeField] private float yMaxOffset;
+    [SerializeField] private float yMinPosOffset;
+    [SerializeField] private float yMaxPosOffset;
+
+    [Header("Rotation Offset Data")]
+    [SerializeField] private float minRotation = 0;
+    [SerializeField] private float maxRotation = 360;
 
 
     private void Start()
@@ -32,8 +36,8 @@ public class VFX_Controller : MonoBehaviour
     {
         if (!randomPosition) return;
 
-        float xOffset = Random.Range(xMinOffset, xMaxOffset);
-        float yOffset = Random.Range(yMinOffset, yMaxOffset);
+        float xOffset = Random.Range(xMinPosOffset, xMaxPosOffset);
+        float yOffset = Random.Range(yMinPosOffset, yMaxPosOffset);
 
         transform.position += new Vector3(xOffset, yOffset);
     }
@@ -42,7 +46,7 @@ public class VFX_Controller : MonoBehaviour
     {
         if (!randomRotation) return;
 
-        float zRotation = Random.Range(0, 360);
+        float zRotation = Random.Range(minRotation, maxRotation);
         transform.Rotate(0, 0, zRotation);
     }
 }

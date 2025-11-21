@@ -3091,7 +3091,8 @@ MonoBehaviour:
   flashMat: {fileID: 2100000, guid: a300a798a06801644bc90d1f99b24e92, type: 2}
   flashTime: 0.15
   hitVFX: {fileID: 5105810731347979348, guid: 28450128b41ea414aa0a24fd58ee9986, type: 3}
-  hitVFXColor: {r: 1, g: 0.7371156, b: 0, a: 1}
+  critHitVFX: {fileID: 4439417414916157160, guid: 803bb1a3f4addd94f8f877fa29e9e9a9, type: 3}
+  hitVFXColor: {r: 1, g: 0.4636394, b: 0, a: 1}
 --- !u!1 &1315981402
 GameObject:
   m_ObjectHideFlags: 0
@@ -3418,7 +3419,6 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
-  damageAmount: 10
 --- !u!114 &1379006306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3464,7 +3464,7 @@ MonoBehaviour:
   vitalityHealthMultiplier: 5
   offensiveStats:
     damage:
-      baseValue: 0
+      baseValue: 10
     critPower:
       baseValue: 0
     critChance:
@@ -3487,7 +3487,7 @@ MonoBehaviour:
     lightningResistance:
       baseValue: 0
   agilityEvasionMultiplier: 0.5
-  evasionCap: 0
+  evasionCap: 85
 --- !u!1 &1460819227
 GameObject:
   m_ObjectHideFlags: 0
@@ -3780,7 +3780,6 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 1536
-  damageAmount: 10
   counterAttackRecoveryDuration: 0.25
 --- !u!114 &1532871512
 MonoBehaviour:
@@ -3831,7 +3830,7 @@ MonoBehaviour:
     lightningResistance:
       baseValue: 0
   agilityEvasionMultiplier: 0.5
-  evasionCap: 0
+  evasionCap: 85
 --- !u!1 &1582717501
 GameObject:
   m_ObjectHideFlags: 0
@@ -4566,6 +4565,7 @@ MonoBehaviour:
   flashMat: {fileID: 2100000, guid: a300a798a06801644bc90d1f99b24e92, type: 2}
   flashTime: 0.15
   hitVFX: {fileID: 5105810731347979348, guid: 28450128b41ea414aa0a24fd58ee9986, type: 3}
+  critHitVFX: {fileID: 4439417414916157160, guid: 803bb1a3f4addd94f8f877fa29e9e9a9, type: 3}
   hitVFXColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &1851838248
 GameObject:

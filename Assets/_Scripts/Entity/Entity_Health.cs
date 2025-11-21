@@ -55,7 +55,7 @@ public class Entity_Health : MonoBehaviour,IDamagable
             CalculateKnockbackDuration(knockbackDuration, damage));
 
 
-        entity_VFX?.PlayOnDamageTakenVFX();
+        entity_VFX?.PlayOnTakeDamageTakenVFX();
         
         ReduceHP(damage);
 
