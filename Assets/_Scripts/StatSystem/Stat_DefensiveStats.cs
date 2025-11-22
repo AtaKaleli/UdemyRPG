@@ -3,7 +3,7 @@ using System;
 
 
 [Serializable]
-public class Stat_DefensiveGroup
+public class Stat_DefensiveStats
 {
     //Physical Defense
     public Stat armor;

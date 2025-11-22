@@ -3,7 +3,7 @@ using System;
 
 
 [Serializable]
-public class Stat_MajorGroup
+public class Stat_MajorStats
 {
     public Stat strength;
     public Stat agility;

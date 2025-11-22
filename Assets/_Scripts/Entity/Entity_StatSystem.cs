@@ -7,16 +7,16 @@ public class Entity_StatSystem : MonoBehaviour
 
     [Space(16)]
     [Header("Major Stats Releated Data")]
-    public Stat_MajorGroup majorStats;
+    public Stat_MajorStats majorStats;
     [SerializeField] private float vitalityHealthMultiplier = 5f;
 
     [Space(16)]
     [Header("Offensive Stats Releated Data")]
-    public Stat_OffenseGroup offensiveStats;
+    public Stat_OffensiveStats offensiveStats;
 
     [Space(16)]
     [Header("Defensive Stats Releated Data")]
-    public Stat_DefensiveGroup defensiveGroup;
+    public Stat_DefensiveStats defensiveStats;
     [SerializeField] private float agilityEvasionMultiplier = 0.5f;
     [SerializeField] private float evasionCap = 85f;
 
@@ -58,9 +58,35 @@ public class Entity_StatSystem : MonoBehaviour
     }
 
 
+    public float GetArmorMitigation(float opponentArmorReduction)
+    {
+        float baseArmor = defensiveStats.armor.GetValue();
+        float bonusArmor = majorStats.vitality.GetValue();
+        float totalArmor = baseArmor + bonusArmor;
+
+        float reductionMultiplier = Mathf.Clamp01(1 - opponentArmorReduction); // 1 - .4 = .6f that is used percetange of armor
+
+        float finalArmor = totalArmor * reductionMultiplier;
+
+        float armorMitigation = finalArmor / (finalArmor + 100); // 100 here represents scaling constant
+
+        return Mathf.Clamp(armorMitigation, 0, .85f); // cap the mitigation so that player cant stack armor infinitely to become invictable
+    }
+
+    public float GetArmorReduction()
+    {
+        return  offensiveStats.armorReduction.GetValue() / 100; //total armor reduction  as multiplier
+    }
+
+    public float CalculateFinalDamage(float baseDamage, float armorMitigation)
+    {
+        return baseDamage * (1 - armorMitigation);
+    }
+    
+
     public float GetEvasion()
     {
-        float baseEvasion = defensiveGroup.evasion.GetValue();
+        float baseEvasion = defensiveStats.evasion.GetValue();
         float bonusEvasion = majorStats.agility.GetValue() * agilityEvasionMultiplier; // each agility point gives you 0.5% of evasion
         float totalEvasion = baseEvasion + bonusEvasion;
 

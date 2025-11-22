@@ -3,12 +3,13 @@ using System;
 
 
 [Serializable]
-public class Stat_OffenseGroup 
+public class Stat_OffensiveStats 
 {
     // Physical Damage
     public Stat damage;
     public Stat critPower;
     public Stat critChance;
+    public Stat armorReduction;
 
 
     //Elenemental Damage

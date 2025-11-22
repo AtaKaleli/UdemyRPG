@@ -3325,7 +3325,7 @@ Transform:
   m_GameObject: {fileID: 1379006300}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.29, y: 4.3, z: -0.13265613}
+  m_LocalPosition: {x: 3.25, y: 4.3, z: -0.13265613}
   m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3464,10 +3464,12 @@ MonoBehaviour:
   vitalityHealthMultiplier: 5
   offensiveStats:
     damage:
-      baseValue: 10
+      baseValue: 100
     critPower:
       baseValue: 0
     critChance:
+      baseValue: 0
+    armorReduction:
       baseValue: 0
     fireDamage:
       baseValue: 0
@@ -3475,7 +3477,7 @@ MonoBehaviour:
       baseValue: 0
     lightningDamage:
       baseValue: 0
-  defensiveGroup:
+  defensiveStats:
     armor:
       baseValue: 0
     evasion:
@@ -3794,7 +3796,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp:
-    baseValue: 100
+    baseValue: 1000
   majorStats:
     strength:
       baseValue: 0
@@ -3812,13 +3814,15 @@ MonoBehaviour:
       baseValue: 0
     critChance:
       baseValue: 0
+    armorReduction:
+      baseValue: 0
     fireDamage:
       baseValue: 0
     iceDamage:
       baseValue: 0
     lightningDamage:
       baseValue: 0
-  defensiveGroup:
+  defensiveStats:
     armor:
       baseValue: 0
     evasion:

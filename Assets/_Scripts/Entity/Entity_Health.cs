@@ -46,18 +46,26 @@ public class Entity_Health : MonoBehaviour,IDamagable
 
     public virtual bool CanTakeDamage(float damage, Transform damageProvider)
     {
-        Debug.Log("I am in entity health");
+
         if (isDead || IsAttackAvoided()) return false;
 
+        Entity_StatSystem damageProviderStats = damageProvider.GetComponent<Entity_StatSystem>();
 
-        entity?.ReceiveKnockback(CalculateKnockbackPower(knockbackPower, damage),
+        //armor reduction of opponent, used in calculation of armor mitigation of target that took damage.
+        float armorReduction = damageProviderStats != null ? damageProviderStats.GetArmorReduction() : 0;
+        float armorMitigation = entity_Stat.GetArmorMitigation(armorReduction);
+
+        float finalDamage = entity_Stat.CalculateFinalDamage(damage, armorMitigation);
+
+
+        entity?.ReceiveKnockback(CalculateKnockbackPower(knockbackPower, finalDamage),
             CalculateKnockbackDirection(damageProvider),
-            CalculateKnockbackDuration(knockbackDuration, damage));
-
+            CalculateKnockbackDuration(knockbackDuration, finalDamage));
 
         entity_VFX?.PlayOnTakeDamageTakenVFX();
-        
-        ReduceHP(damage);
+
+        Debug.Log("I took " + finalDamage + " damage");
+        ReduceHP(finalDamage);
 
         return true;
     }
